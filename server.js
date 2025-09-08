@@ -16,6 +16,8 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+// middleware
+//
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
@@ -23,6 +25,13 @@ app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
 
+// public
+app.get('/', async (req, res) => {
+    res.render('index.ejs');
+});
+
+
+// protected
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
